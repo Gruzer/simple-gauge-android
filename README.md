@@ -3,15 +3,15 @@
 Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change (colors of ranges) 
 
 
-##Gauges
 
-<img src="images/MultiGauge.jpg" width="25%" />
+**Gauges...**<br/>
+<img src="images/multigauge.jpg" width="25%" />
 <img src="images/HalfGauge.jpg" width="25%" />
 <img src="images/FullGauge.jpg" width="25%" />
 <img src="images/ArcGauge.jpg" width="25%" />
 
-<br/>
-** in app usage example
+
+** in app usage example** <br/>
 <img src="images/app_gif.gif" width="25%" />
 
 
@@ -69,7 +69,7 @@ for all gauges, first need to set Color Ranges and set min value and max value
 
   <tr>
     <td width="24%"> <a href="">1. MultiGauge - Wiki</a></td>
-    <td width="22%"><img src="images/MultiGauge.jpg"/></td>
+    <td width="22%"><img src="images/multigauge.jpg"/></td>
     <td>
        <pre>
 &lt; com.ekn.gruzer.gaugelibrary.MultiGauge
