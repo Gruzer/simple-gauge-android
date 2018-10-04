@@ -17,17 +17,10 @@ Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change 
 
 # Download
 add to your Project build.gradle
+next line to repositories for allprojects 
 ```gradle
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url  "https://dl.bintray.com/gruzer/AndroidLibrary"
-        }
-    }
-}
+        maven {url  "https://dl.bintray.com/gruzer/AndroidLibrary"}  
 
 ````
 add to depentency in Module build.gradle
