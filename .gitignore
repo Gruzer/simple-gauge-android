@@ -63,3 +63,8 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+.idea/runConfigurations.xml
+.idea/codeStyles/Project.xml
+.idea/copyright/Evstafiev_Konstantin_Apache2_0.xml
+.idea/misc.xml
+.idea/modules.xml
