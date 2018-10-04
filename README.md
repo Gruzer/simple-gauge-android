@@ -5,10 +5,10 @@ Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change 
 
 
 **Gauges...**<br/>
-<img src="images/multigauge.jpg" width="25%" />
-<img src="images/HalfGauge.jpg" width="25%" />
-<img src="images/FullGauge.jpg" width="25%" />
-<img src="images/ArcGauge.jpg" width="25%" />
+<img src="images/multigauge.jpg" width="20%" />
+<img src="images/HalfGauge.jpg" width="20%" />
+<img src="images/FullGauge.jpg" width="20%" />
+<img src="images/ArcGauge.jpg" width="20%" />
 
 
 ** in app usage example** <br/>
