@@ -15,7 +15,7 @@ Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change 
 <img src="images/app_gif.gif" width="25%" />
 
 
-#Download
+# Download
 add to your Project build.gradle
 ```gradle
 
