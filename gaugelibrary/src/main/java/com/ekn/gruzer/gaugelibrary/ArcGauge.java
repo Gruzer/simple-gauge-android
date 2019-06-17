@@ -58,4 +58,8 @@ public class ArcGauge extends FullGauge {
         setSweepAngle(sweepAngle);
         setStartAngle(startAngle);
     }
+
+    protected void drawValuePoint(Canvas canvas) {
+       //no point
+    }
 }

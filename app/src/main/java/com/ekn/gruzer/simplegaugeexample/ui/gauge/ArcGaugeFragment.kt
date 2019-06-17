@@ -66,6 +66,7 @@ class ArcGaugeFragment : Fragment() {
         arcGauge.addRange(range)
         arcGauge.addRange(range2)
         arcGauge.addRange(range3)
+        arcGauge.isUseRangeBGColor= true
 
         arcgauge_update_btn.setOnClickListener {
             arcGauge.value = arcgauge_value_ed.text.toString().toDouble()

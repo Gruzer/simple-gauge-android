@@ -64,7 +64,7 @@ class FullGauge : Fragment() {
         range3.from = 100.0
         range3.to = 150.0
 
-        fullGauge.minValue = 10.0
+        fullGauge.minValue = 0.0
         fullGauge.maxValue = 150.0
         fullGauge.value = 35.0
 
@@ -72,6 +72,9 @@ class FullGauge : Fragment() {
         fullGauge.addRange(range)
         fullGauge.addRange(range2)
         fullGauge.addRange(range3)
+
+        fullGauge.isUseRangeBGColor = true
+        fullGauge.isDisplayValuePoint = true
 
         full_gauge_update_btn.setOnClickListener {
             fullGauge.value = full_gauge_value_ed.text.toString().toDouble()

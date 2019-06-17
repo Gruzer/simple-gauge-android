@@ -1,19 +1,15 @@
 /*******************************************************************************
  * Copyright 2018 Evstafiev Konstantin
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
-
  * http://www.apache.org/licenses/LICENSE-2.0
-
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-
 
 
 package com.ekn.gruzer.gaugelibrary;
@@ -28,11 +24,9 @@ import android.util.AttributeSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultiGauge extends AbstractGauge {
+public class MultiGauge extends FullGauge {
 
     private float distance = 30f;
-    private float sweepAngle = 360;
-    private float startAngle = 270;
     private float gaugeBGWidth = 20f;
     private double secondValue = 0;
     private double thirdValue = 0;
@@ -85,24 +79,18 @@ public class MultiGauge extends AbstractGauge {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.save();
-        canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), (getHeight() / 2f) - 200f * getScaleRatio());
-        canvas.scale(getScaleRatio(), getScaleRatio());
-        canvas.drawArc(getRectF(), startAngle, sweepAngle, false, getGaugeBackGround());
-        canvas.drawArc(getSecondRect(), startAngle, sweepAngle, false, getGaugeBackGround());
-        canvas.drawArc(getThirdRect(), startAngle, sweepAngle, false, getGaugeBackGround());
-        canvas.restore();
+        //Draw Base Arc's
+        drawBaseArc(canvas, getSecondRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getSecondValue()));
+        drawBaseArc(canvas, getThirdRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getThirdValue()));
 
-        //draw gauges Ranges
-        canvas.save();
-        canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), (getHeight() / 2f) - 200f * getScaleRatio());
-        canvas.scale(getScaleRatio(), getScaleRatio());
-
-        drawValueRange(canvas, getRectF(), getMinValue(), getMaxValue(), getValue(), getRanges());
-        drawValueRange(canvas, getSecondRect(), getSecondMinValue(), getSecondMaxValue(), getSecondValue(), getSecondRanges());
-        drawValueRange(canvas, getThirdRect(), getThirdMinValue(), getThirdMaxValue(), getThirdValue(), getThirdRanges());
-
-        canvas.restore();
+        //Draw Value Arc's
+        drawValueArcOnCanvas(canvas, getSecondRect(), getStartAngle(),
+                calculateSweepAngle(getSecondValue(), getSecondMinValue(), getSecondMaxValue()),
+                getSecondValue(), getSecondRanges());
+        
+        drawValueArcOnCanvas(canvas, getThirdRect(), getStartAngle(),
+                calculateSweepAngle(getThirdValue(), getThirdMinValue(), getThirdMaxValue()),
+                getThirdValue(), getThirdRanges());
 
 
     }
@@ -125,15 +113,6 @@ public class MultiGauge extends AbstractGauge {
         return color;
     }
 
-    private void drawValueRange(Canvas canvas, RectF rectF, double minValue, double maxValue, double value, List<Range> ranges) {
-        float sweepAngle = calculateSweepAngle(minValue, maxValue, value);
-        canvas.drawArc(rectF, startAngle, sweepAngle, false, getRangePaint(value, ranges));
-    }
-
-    private float calculateSweepAngle(double minValue, double maxValue, double to) {
-        float valuePer = getCalculateValuePercentage(minValue, maxValue, to);
-        return sweepAngle / 100 * valuePer;
-    }
 
     public double getSecondValue() {
         return secondValue;

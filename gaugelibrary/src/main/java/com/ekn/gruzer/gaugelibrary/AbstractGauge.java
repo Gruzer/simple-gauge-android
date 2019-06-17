@@ -1,12 +1,9 @@
 /*******************************************************************************
  * Copyright 2018 Evstafiev Konstantin
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
-
  * http://www.apache.org/licenses/LICENSE-2.0
-
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,6 +39,7 @@ abstract class AbstractGauge extends View {
     private float rectBottom = 400;
     private float padding = 0;
     private RectF rectF;
+    private boolean useRangeBGColor = false;
 
 
     public AbstractGauge(Context context) {
@@ -131,6 +129,32 @@ abstract class AbstractGauge extends View {
             // setLayerType(LAYER_TYPE_SOFTWARE, gaugeBackGround);
         }
         return gaugeBackGround;
+    }
+
+    protected Paint getGaugeBackGround(double value) {
+        if (useRangeBGColor) {
+            getGaugeBackGround().setColor(getRangeColorForValue(value));
+            getGaugeBackGround().setAlpha(20);
+        }
+        return getGaugeBackGround();
+    }
+
+    protected int getRangeColorForValue(double value) {
+        return getRangeColorForValue(value, ranges);
+    }
+
+    protected int getRangeColorForValue(double value, List<Range> ranges) {
+        int color = Color.GRAY;
+
+        for (Range range : ranges) {
+            if (range.getTo() <= value)
+                color = range.getColor();
+
+
+            if (range.getFrom() <= value && range.getTo() >= value)
+                color = range.getColor();
+        }
+        return color;
     }
 
     protected int getCalculateValuePercentage() {
@@ -228,5 +252,13 @@ abstract class AbstractGauge extends View {
 
     public void setPadding(float padding) {
         this.padding = padding;
+    }
+
+    public boolean isUseRangeBGColor() {
+        return useRangeBGColor;
+    }
+
+    public void setUseRangeBGColor(boolean useRangeBGColor) {
+        this.useRangeBGColor = useRangeBGColor;
     }
 }

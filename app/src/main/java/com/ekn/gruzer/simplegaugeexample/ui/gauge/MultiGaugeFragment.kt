@@ -72,6 +72,9 @@ class MultiGaugeFragment : Fragment() {
         multiGauge.thirdValue = 100.0
 
 
+        multiGauge.isDisplayValuePoint = true
+        multiGauge.isUseRangeBGColor = true
+
         multiGauge.addRange(range)
         multiGauge.addRange(range2)
         multiGauge.addRange(range3)
