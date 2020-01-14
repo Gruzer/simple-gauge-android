@@ -72,6 +72,7 @@ public class MultiGauge extends FullGauge {
         getGaugeBackGround().setColor(Color.parseColor("#EAEAEA"));
         getTextPaint().setTextSize(35f);
         setPadding(20f);
+        setDrawValueText(false);
     }
 
 
@@ -95,6 +96,10 @@ public class MultiGauge extends FullGauge {
 
     }
 
+    @Override
+    protected void drawValuePoint(Canvas canvas) {
+        //TODO : draw value point
+    }
 
     private Paint getRangePaint(double value, List<Range> ranges) {
         Paint color = new Paint(Paint.ANTI_ALIAS_FLAG);

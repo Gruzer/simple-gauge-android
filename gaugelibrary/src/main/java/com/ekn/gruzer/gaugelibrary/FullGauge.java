@@ -29,6 +29,7 @@ public class FullGauge extends AbstractGauge {
     private float startAngle = 270;
     private float gaugeBGWidth = 20f;
     private boolean displayValuePoint = false;
+    protected boolean drawValueText = true;
 
 
     public FullGauge(Context context) {
@@ -70,7 +71,7 @@ public class FullGauge extends AbstractGauge {
         drawValueArcOnCanvas(canvas);
 
         //drawText
-        //drawValueText(canvas);
+        drawValueText(canvas);
 
         //draw value  point indicator
         drawValuePoint(canvas);
@@ -92,9 +93,9 @@ public class FullGauge extends AbstractGauge {
         if (displayValuePoint) {
             prepareCanvas(canvas);
             //draw Value point indicator
-            float rotateValue = calculateSweepAngle(getValue(),getMinValue(),getMaxValue());
+            float rotateValue = calculateSweepAngle(getValue(), getMinValue(), getMaxValue());
             canvas.rotate(rotateValue, getRectRight() / 2f, getRectBottom() / 2f);
-            canvas.drawCircle(400f / 2f, getPadding(), 8f, getRangePaintForValue(getValue(),getRanges()));
+            canvas.drawCircle(400f / 2f, getPadding(), 8f, getRangePaintForValue(getValue(), getRanges()));
             canvas.drawLine(200f - 3f, 11f, 210f - 4f, 19f, getArrowPaint());
             canvas.drawLine(210f - 4f, 20f, 200f - 3f, 27f, getArrowPaint());
             finishCanvas(canvas);
@@ -122,15 +123,17 @@ public class FullGauge extends AbstractGauge {
 
 
     private void drawValueText(Canvas canvas) {
-        canvas.save();
-        canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), (getHeight() / 2f) - 220f * getScaleRatio());
-        canvas.scale(getScaleRatio(), getScaleRatio());
-        canvas.drawText(getValue() + "", 200f, 240f, getTextPaint());
-        canvas.restore();
+        if (drawValueText) {
+            canvas.save();
+            canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), (getHeight() / 2f) - 220f * getScaleRatio());
+            canvas.scale(getScaleRatio(), getScaleRatio());
+            canvas.drawText(getValue() + "", 200f, 240f, getTextPaint());
+            canvas.restore();
+        }
     }
 
 
-    protected Paint getRangePaintForValue(double value,List<Range> ranges){
+    protected Paint getRangePaintForValue(double value, List<Range> ranges) {
 
 
         Paint color = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -138,25 +141,24 @@ public class FullGauge extends AbstractGauge {
         color.setStyle(Paint.Style.STROKE);
         //color.setColor(getGaugeBackGround().getColor());
         color.setStrokeCap(Paint.Cap.ROUND);
-        color.setColor(getRangeColorForValue(value,ranges));
+        color.setColor(getRangeColorForValue(value, ranges));
         return color;
     }
 
     private void drawValueArcOnCanvas(Canvas canvas) {
         float sweepAngle = calculateSweepAngle(getValue(), getMinValue(), getMaxValue());
-        drawValueArcOnCanvas(canvas, getRectF(),getStartAngle(), sweepAngle,getValue(),getRanges());
+        drawValueArcOnCanvas(canvas, getRectF(), getStartAngle(), sweepAngle, getValue(), getRanges());
     }
 
 
-
-    protected void drawValueArcOnCanvas(Canvas canvas, RectF rectF,float startAngle, float sweepAngle,double value,List<Range> ranges) {
+    protected void drawValueArcOnCanvas(Canvas canvas, RectF rectF, float startAngle, float sweepAngle, double value, List<Range> ranges) {
         prepareCanvas(canvas);
-        canvas.drawArc(rectF, startAngle, sweepAngle, false, getRangePaintForValue(value,ranges));
+        canvas.drawArc(rectF, startAngle, sweepAngle, false, getRangePaintForValue(value, ranges));
         finishCanvas(canvas);
     }
 
-    protected float calculateSweepAngle(double to,double min, double max) {
-        float valuePer = getCalculateValuePercentage(min,max,to);
+    protected float calculateSweepAngle(double to, double min, double max) {
+        float valuePer = getCalculateValuePercentage(min, max, to);
         return sweepAngle / 100 * valuePer;
     }
 
@@ -192,4 +194,13 @@ public class FullGauge extends AbstractGauge {
     public void setDisplayValuePoint(boolean displayValuePoint) {
         this.displayValuePoint = displayValuePoint;
     }
+
+    protected boolean isDrawValueText() {
+        return drawValueText;
+    }
+
+    protected void setDrawValueText(boolean drawValueText) {
+        this.drawValueText = drawValueText;
+    }
+
 }
