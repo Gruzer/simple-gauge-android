@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -158,7 +159,8 @@ abstract class AbstractGauge extends View {
     }
 
     protected int getCalculateValuePercentage() {
-        return getCalculateValuePercentage(getValue());
+        int value = getCalculateValuePercentage(getValue());
+        return value;
 
     }
 
@@ -166,12 +168,108 @@ abstract class AbstractGauge extends View {
         return getCalculateValuePercentage(getMinValue(), getMaxValue(), value);
     }
 
-    protected int getCalculateValuePercentage(double min, double max, double value) {
+    protected int getCalculateValuePercentageOld(double min, double max, double value) {
         if (min >= value)
             return 0;
         if (max <= value)
             return 100;
         return (int) ((value - min) / (max - min) * 100);
+    }
+
+    protected int getCalculateValuePercentage(double min, double max, double value) {
+        if (min < 0 && max < 0 && min < max) {
+            return getCalculateValuePercentageUseCaseOne(min, max, value);
+        } else if (min < 0 && max < 0 && min > max) {
+            return getCalculateValuePercentageUseCaseTwo(min, max, value);
+        } else if ((min>=0 && max<0) || (min<0 && max >=0)) {
+            if (min > max) {
+                return getCalculateValuePercentageUseCaseThree(min, max, value);
+            } else if(min < max) {
+                return getCalculateValuePercentageUseCaseFoure(min, max, value);
+            }
+
+        }
+        return getCalculateValuePercentageOld(min, max, value);
+    }
+
+    /**
+     * Use case when min and max negative
+     * and min smaller than max
+     */
+    private int getCalculateValuePercentageUseCaseOne(double min, double max, double value) {
+        if (value <= Math.min(min, max))
+            return 0;
+        if (value >= Math.max(min, max))
+            return 100;
+        else {
+            double avalibe = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
+            double minValue = Math.min(min, max);
+            double reult = Math.abs(((minValue - value) / (avalibe) * 100));
+            return (int) reult;
+        }
+    }
+
+    /**
+     * Use Case when min and max negative
+     * and min bigger than max
+     */
+    private int getCalculateValuePercentageUseCaseTwo(double min, double max, double value) {
+        if (value <= Math.min(min, max))
+            return 100;
+        if (value >= Math.max(min, max))
+            return 0;
+        else {
+            double avalibe = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
+            double maxValue = Math.max(min, max);
+            double reult = Math.abs(((maxValue - value) / (avalibe) * 100));
+            return (int) reult;
+        }
+    }
+
+
+    //TODO: Need improvements for calculation algorithms for next to methods
+
+    /**
+     * Use case when one of the limits are negative and one is positive
+     * TODO: Need Improvements
+     */
+    private int getCalculateValuePercentageUseCaseThree(double min, double max, double value) {
+        double avalibe = Math.abs(min) + Math.abs(max);
+        if (value <= Math.min(min, max)) {
+            return 100;
+        } else if (value >= Math.max(min, max))
+            return 0;
+        else if (value <= 0) {
+            double positive = Math.max(min, max);
+            double reult = ((positive - value) / (avalibe) * 100);
+            return (int) reult;
+        } else {
+            double negative = Math.abs(Math.min(min, max));
+            double reult = Math.abs((negative + value) / (avalibe) * 100);
+            return (int) reult;
+        }
+    }
+
+    /**
+     * Use case when one of the limits are negative and one is positive
+     * and max is bigger than min
+     * TODO: Need Improvements
+     */
+    private int getCalculateValuePercentageUseCaseFoure(double min, double max, double value) {
+        double avalibe = Math.abs(min) + Math.abs(max);
+        if (value <= Math.min(min, max)) {
+            return 0;
+        } else if (value >= Math.max(min, max))
+            return 100;
+        else if (value >= 0) {
+            double positive = Math.max(min, max);
+            double reult = ((positive + value) / (avalibe) * 100);
+            return (int) reult;
+        } else {
+            double negative = Math.abs(Math.min(min, max));
+            double reult = Math.abs((negative + value) / (avalibe) * 100);
+            return (int) reult;
+        }
     }
 
     protected Paint getTextPaint() {
