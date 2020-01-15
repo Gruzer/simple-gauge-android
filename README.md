@@ -15,6 +15,7 @@ Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change 
 <img src="images/app_gif.gif" width="25%" />
 
 
+
 # Download
 
 add this line to build.gradle
@@ -22,10 +23,14 @@ add this line to build.gradle
 ``` gradle
 
 dependencies {
-	implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.1.0'
+	implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.0'
 }
 
 ```
+
+# Whats new
+
+New release avalible <a href="https://github.com/Gruzer/simple-gauge-android/releases">Read </a>
 
 
 # Simple Usage
