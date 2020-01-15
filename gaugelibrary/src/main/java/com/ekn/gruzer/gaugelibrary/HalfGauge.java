@@ -1,12 +1,9 @@
 /*******************************************************************************
  * Copyright 2018 Evstafiev Konstantin
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
-
  * http://www.apache.org/licenses/LICENSE-2.0
-
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,6 +31,8 @@ public class HalfGauge extends AbstractGauge {
     private float sweepAngle = 120;
     private Integer needleAngleNext;
     private Handler handler = new Handler();
+    private boolean enableBackGroundShadow = true;
+    private boolean enableNeedleShadow = true;
 
 
     private Runnable runnable = new Runnable() {
@@ -64,17 +63,27 @@ public class HalfGauge extends AbstractGauge {
     }
 
     private void init() {
-        //add BG Shadow
-        getGaugeBackGround().setStrokeWidth(100f);
-        getGaugeBackGround().setShadowLayer(15.0f, 0f, 5.0f, 0X50000000);
-        setLayerType(LAYER_TYPE_SOFTWARE, getGaugeBackGround());
 
-        //add Needle Shadow
-        getNeedlePaint().setShadowLayer(10.f, 0f, 5.0f, 0X50000000);
-        setLayerType(LAYER_TYPE_SOFTWARE, getNeedlePaint());
+        getGaugeBackGround().setStrokeWidth(100f);
+        //add BG Shadow
+        //drawShadow();
 
         setPadding(20f);
 
+
+    }
+
+    private void drawShadow() {
+        if (enableBackGroundShadow) {
+            getGaugeBackGround().setShadowLayer(15.0f, 0f, 5.0f, 0X50000000);
+            setLayerType(LAYER_TYPE_SOFTWARE, getGaugeBackGround());
+
+        }
+        if (enableNeedleShadow) {
+            //add Needle Shadow
+            getNeedlePaint().setShadowLayer(10.f, 0f, 5.0f, 0X50000000);
+            setLayerType(LAYER_TYPE_SOFTWARE, getNeedlePaint());
+        }
 
     }
 
@@ -83,6 +92,10 @@ public class HalfGauge extends AbstractGauge {
         super.onDraw(canvas);
         if (canvas == null)
             return;
+
+        //Add shadow
+        drawShadow();
+
         canvas.save();
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
@@ -127,7 +140,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(26, 10f, 130f);
-        canvas.drawText(getMinValue() + "", 10f+getPadding(), 130f, getRangeValue());
+        canvas.drawText(getMinValue() + "", 10f + getPadding(), 130f, getRangeValue());
         canvas.restore();
     }
 
@@ -136,7 +149,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(-26, 390f, 130f);
-        canvas.drawText(getMaxValue() + "", 390f-getPadding(), 130f, getRangeValue());
+        canvas.drawText(getMaxValue() + "", 390f - getPadding(), 130f, getRangeValue());
         canvas.restore();
     }
 
@@ -198,4 +211,19 @@ public class HalfGauge extends AbstractGauge {
         return textPaint;
     }
 
+    public boolean isEnableBackGroundShadow() {
+        return enableBackGroundShadow;
+    }
+
+    public void setEnableBackGroundShadow(boolean enableBackGroundShadow) {
+        this.enableBackGroundShadow = enableBackGroundShadow;
+    }
+
+    public boolean isEnableNeedleShadow() {
+        return enableNeedleShadow;
+    }
+
+    public void setEnableNeedleShadow(boolean enableNeedleShadow) {
+        this.enableNeedleShadow = enableNeedleShadow;
+    }
 }
