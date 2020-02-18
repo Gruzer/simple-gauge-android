@@ -76,13 +76,13 @@ public class HalfGauge extends AbstractGauge {
     private void drawShadow() {
         if (enableBackGroundShadow) {
             getGaugeBackGround().setShadowLayer(15.0f, 0f, 5.0f, 0X50000000);
-            setLayerType(LAYER_TYPE_SOFTWARE, getGaugeBackGround());
+            setLayerType(LAYER_TYPE_HARDWARE, getGaugeBackGround());
 
         }
         if (enableNeedleShadow) {
             //add Needle Shadow
             getNeedlePaint().setShadowLayer(10.f, 0f, 5.0f, 0X50000000);
-            setLayerType(LAYER_TYPE_SOFTWARE, getNeedlePaint());
+            setLayerType(LAYER_TYPE_HARDWARE, getNeedlePaint());
         }
 
     }
