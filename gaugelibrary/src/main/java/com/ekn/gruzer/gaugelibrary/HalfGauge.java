@@ -33,6 +33,7 @@ public class HalfGauge extends AbstractGauge {
     private Handler handler = new Handler();
     private boolean enableBackGroundShadow = true;
     private boolean enableNeedleShadow = true;
+    private boolean enableAnimation = true;
 
 
     private Runnable runnable = new Runnable() {
@@ -171,7 +172,7 @@ public class HalfGauge extends AbstractGauge {
     }
 
     public int getNeedleAngle() {
-        if (needleAngleNext != null) {
+        if (needleAngleNext != null && enableAnimation) {
             if (needleAngleNext != currentAngle) {
                 if (needleAngleNext < currentAngle)
                     currentAngle--;
@@ -225,5 +226,23 @@ public class HalfGauge extends AbstractGauge {
 
     public void setEnableNeedleShadow(boolean enableNeedleShadow) {
         this.enableNeedleShadow = enableNeedleShadow;
+    }
+
+    /**
+     * Enable or disable animation for needle
+     * true will enable animation
+     * false will disable animation
+     * @param enableAnimation [boolean]
+     */
+    public void enableAnimation(boolean enableAnimation){
+        this.enableAnimation = enableAnimation;
+    }
+
+    /**
+     * Check if animation enable or disable for needle
+     * @return boolean value
+     */
+    public boolean isEnableAnimation() {
+        return enableAnimation;
     }
 }

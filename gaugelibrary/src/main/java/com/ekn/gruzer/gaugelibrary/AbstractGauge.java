@@ -33,6 +33,7 @@ abstract class AbstractGauge extends View {
     private double maxValue = 100;
     private Paint needleColor;
     private Paint gaugeBackGround;
+    private int gaugeBGColor = Color.parseColor("#EAEAEA");
     private Paint textPaint;
     private float rectTop = 0;
     private float rectLeft = 0;
@@ -123,7 +124,7 @@ abstract class AbstractGauge extends View {
     protected Paint getGaugeBackGround() {
         if (gaugeBackGround == null) {
             gaugeBackGround = new Paint();
-            gaugeBackGround.setColor(Color.parseColor("#EAEAEA"));
+            gaugeBackGround.setColor(gaugeBGColor);
             gaugeBackGround.setAntiAlias(true);
             gaugeBackGround.setStyle(Paint.Style.STROKE);
             // gaugeBackGround.setShadowLayer(15.0f,0f,5.0f,0X50000000);
@@ -181,10 +182,10 @@ abstract class AbstractGauge extends View {
             return getCalculateValuePercentageUseCaseOne(min, max, value);
         } else if (min < 0 && max < 0 && min > max) {
             return getCalculateValuePercentageUseCaseTwo(min, max, value);
-        } else if ((min>=0 && max<0) || (min<0 && max >=0)) {
+        } else if ((min >= 0 && max < 0) || (min < 0 && max >= 0)) {
             if (min > max) {
                 return getCalculateValuePercentageUseCaseThree(min, max, value);
-            } else if(min < max) {
+            } else if (min < max) {
                 return getCalculateValuePercentageUseCaseFoure(min, max, value);
             }
 
@@ -359,4 +360,14 @@ abstract class AbstractGauge extends View {
     public void setUseRangeBGColor(boolean useRangeBGColor) {
         this.useRangeBGColor = useRangeBGColor;
     }
+
+    public void setGaugeBackGroundColor(int color) {
+        this.gaugeBackGround.setColor(color);
+        this.gaugeBGColor = color;
+    }
+
+    public int getGaugeBackgroundColor(){
+        return this.gaugeBGColor;
+    }
+
 }
