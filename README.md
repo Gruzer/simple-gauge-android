@@ -23,7 +23,7 @@ add this line to build.gradle
 ``` gradle
 
 dependencies {
-	implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.1'
+	implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.2'
 }
 
 ```
