@@ -121,11 +121,14 @@ public class HalfGauge extends AbstractGauge {
 
 
         //draw Text Value
-        drawValueText(canvas);
-        //drawMinValue
-        drawMinValue(canvas);
-        //drawMaxValue
-        drawMaxValue(canvas);
+        //drawValueText(canvas);
+
+        if (getshowValueRangeText()) {
+            //drawMinValue
+            drawMinValue(canvas);
+            //drawMaxValue
+            drawMaxValue(canvas);
+        }
     }
 
     private void drawValueText(Canvas canvas) {
