@@ -69,6 +69,8 @@ class HalfGaugeFragment : Fragment() {
         halfGauge.maxValue = (-150).toDouble()
         halfGauge.value = (-80).toDouble()
 
+        halfGauge.setNeedleColor(Color.MAGENTA)
+
        /*
         val range = Range()
         range.color = Color.parseColor("#ce0000")
