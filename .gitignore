@@ -69,3 +69,4 @@ fastlane/readme.md
 .idea/misc.xml
 .idea/modules.xml
 .idea/jarRepositories.xml
+.idea/compiler.xml
