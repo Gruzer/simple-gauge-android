@@ -1,4 +1,5 @@
-# Android Simple Gauge Library
+# Android Simple Gauge Library 
+[![](https://jitpack.io/v/Gruzer/simple-gauge-android.svg)](https://jitpack.io/#Gruzer/simple-gauge-android)
 
 Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change (colors of ranges) 
 
@@ -56,7 +57,7 @@ New release avalible <a href="https://github.com/Gruzer/simple-gauge-android/rel
 
 for all gauges, first need to set Color Ranges and set min value and max value
 ```kotlin
-	    val range = Range()
+	val range = Range()
         range.color = Color.parseColor("#ce0000")
         range.from = 0.0
         range.to = 50.0
@@ -71,13 +72,13 @@ for all gauges, first need to set Color Ranges and set min value and max value
         range3.from = 100.0
         range3.to = 150.0
 		
-	    //add color ranges to gauge
-	    halfGauge.addRange(range)
+	//add color ranges to gauge
+	halfGauge.addRange(range)
         halfGauge.addRange(range2)
         halfGauge.addRange(range3)
 
-	    //set min max and current value
-	    halfGauge.minValue = 0.0
+	//set min max and current value
+	halfGauge.minValue = 0.0
         halfGauge.maxValue = 150.0
         halfGauge.value = 0.0		
 
