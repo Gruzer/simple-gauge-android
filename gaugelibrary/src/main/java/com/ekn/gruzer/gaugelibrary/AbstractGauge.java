@@ -42,6 +42,7 @@ abstract class AbstractGauge extends View {
     private float padding = 0;
     private RectF rectF;
     private boolean useRangeBGColor = false;
+    private boolean showValueRangeText = false;
 
 
     public AbstractGauge(Context context) {
@@ -298,6 +299,12 @@ abstract class AbstractGauge extends View {
 
     public void setMaxValue(double maxValue) {
         this.maxValue = maxValue;
+    }
+
+    public boolean getshowValueRangeText() { return showValueRangeText; }
+
+    public void setShowValueRangeText(boolean value) {
+        this.showValueRangeText = value;
     }
 
     public double getValue() {
