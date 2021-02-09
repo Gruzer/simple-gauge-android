@@ -69,7 +69,10 @@ class HalfGaugeFragment : Fragment() {
         halfGauge.maxValue = (-150).toDouble()
         halfGauge.value = (-80).toDouble()
 
-        halfGauge.setNeedleColor(Color.MAGENTA)
+        halfGauge.setNeedleColor(Color.DKGRAY)
+        halfGauge.valueColor = Color.BLUE
+        halfGauge.minValueTextColor = Color.RED
+        halfGauge.maxValueTextColor = Color.GREEN
 
        /*
         val range = Range()

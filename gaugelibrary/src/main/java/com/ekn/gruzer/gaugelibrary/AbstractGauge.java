@@ -273,6 +273,23 @@ abstract class AbstractGauge extends View {
         }
     }
 
+    /**
+     * Set Value Color
+     *
+     * @param color {@link Integer}
+     */
+    public void setValueColor(int color) {
+        getTextPaint().setColor(color);
+    }
+
+    /**
+     * Get Current Value Color
+     * @return {@link int}
+     */
+    public int getValueColor() {
+        return getTextPaint().getColor();
+    }
+
     protected Paint getTextPaint() {
         if (textPaint == null) {
             textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -366,7 +383,7 @@ abstract class AbstractGauge extends View {
         this.gaugeBGColor = color;
     }
 
-    public int getGaugeBackgroundColor(){
+    public int getGaugeBackgroundColor() {
         return this.gaugeBGColor;
     }
 

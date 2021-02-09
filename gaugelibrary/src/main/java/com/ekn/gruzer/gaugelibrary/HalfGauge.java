@@ -34,6 +34,8 @@ public class HalfGauge extends AbstractGauge {
     private boolean enableBackGroundShadow = true;
     private boolean enableNeedleShadow = true;
     private boolean enableAnimation = true;
+    private int minValueTextColor = Color.GRAY;
+    private int maxValueTextColor = Color.GRAY;
 
 
     private Runnable runnable = new Runnable() {
@@ -141,7 +143,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(26, 10f, 130f);
-        canvas.drawText(getMinValue() + "", 10f + getPadding(), 130f, getRangeValue());
+        canvas.drawText(getMinValue() + "", 10f + getPadding(), 130f, getRangeValue(getMinValueTextColor()));
         canvas.restore();
     }
 
@@ -150,7 +152,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(-26, 390f, 130f);
-        canvas.drawText(getMaxValue() + "", 390f - getPadding(), 130f, getRangeValue());
+        canvas.drawText(getMaxValue() + "", 390f - getPadding(), 130f, getRangeValue(getMaxValueTextColor()));
         canvas.restore();
     }
 
@@ -203,9 +205,9 @@ public class HalfGauge extends AbstractGauge {
         return range;
     }
 
-    protected Paint getRangeValue() {
+    protected Paint getRangeValue(int color) {
         Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setColor(Color.GRAY);
+        textPaint.setColor(color);
         textPaint.setStyle(Paint.Style.FILL);
         textPaint.setTextSize(15f);
         textPaint.setTextAlign(Paint.Align.CENTER);
@@ -232,17 +234,52 @@ public class HalfGauge extends AbstractGauge {
      * Enable or disable animation for needle
      * true will enable animation
      * false will disable animation
+     *
      * @param enableAnimation [boolean]
      */
-    public void enableAnimation(boolean enableAnimation){
+    public void enableAnimation(boolean enableAnimation) {
         this.enableAnimation = enableAnimation;
     }
 
     /**
      * Check if animation enable or disable for needle
+     *
      * @return boolean value
      */
     public boolean isEnableAnimation() {
         return enableAnimation;
+    }
+
+
+    /**
+     * Set Min value text color
+     * @param minValueTextColor {@link int}
+     */
+    public void setMinValueTextColor(int minValueTextColor) {
+        this.minValueTextColor = minValueTextColor;
+    }
+
+    /**
+     * Set Max value text color
+     * @param maxValueTextColor {@link int}
+     */
+    public void setMaxValueTextColor(int maxValueTextColor) {
+        this.maxValueTextColor = maxValueTextColor;
+    }
+
+    /**
+     * Get current min value color
+     * @return {@link int}
+     */
+    public int getMinValueTextColor() {
+        return minValueTextColor;
+    }
+
+    /**
+     * Get current max value color
+     * @return {@link int}
+     */
+    public int getMaxValueTextColor() {
+        return maxValueTextColor;
     }
 }
