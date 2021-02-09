@@ -18,15 +18,25 @@ Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change 
 
 # Download
 
-add this line to build.gradle
+Add it in your root build.gradle at the end of repositories:
 
 ``` gradle
 
-dependencies {
-	implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.2'
+allprojects {
+    repositories {
+     	...
+     	maven { url 'https://jitpack.io' }
+    }
 }
 
 ```
+Add the dependency to app build.gradle
+``` gradle
+dependencies {
+	implementation 'com.github.Gruzer:simple-gauge-android:0.3.0'
+}
+```
+
 
 # Whats new
 
