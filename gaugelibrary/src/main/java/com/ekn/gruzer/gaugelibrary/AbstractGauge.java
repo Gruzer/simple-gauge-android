@@ -191,7 +191,6 @@ abstract class AbstractGauge extends View {
             } else if (min < max) {
                 return getCalculateValuePercentageUseCaseFoure(min, max, value);
             }
-
         }
         return getCalculateValuePercentageOld(min, max, value);
     }
@@ -206,10 +205,10 @@ abstract class AbstractGauge extends View {
         if (value >= Math.max(min, max))
             return 100;
         else {
-            double avalibe = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
+            double available = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
             double minValue = Math.min(min, max);
-            double reult = Math.abs(((minValue - value) / (avalibe) * 100));
-            return (int) reult;
+            double result = Math.abs(((minValue - value) / (available) * 100));
+            return (int) result;
         }
     }
 
@@ -223,10 +222,10 @@ abstract class AbstractGauge extends View {
         if (value >= Math.max(min, max))
             return 0;
         else {
-            double avalibe = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
+            double available = Math.abs(Math.min(min, max)) - Math.abs(Math.max(min, max));
             double maxValue = Math.max(min, max);
-            double reult = Math.abs(((maxValue - value) / (avalibe) * 100));
-            return (int) reult;
+            double result = Math.abs(((maxValue - value) / (available) * 100));
+            return (int) result;
         }
     }
 
@@ -238,19 +237,15 @@ abstract class AbstractGauge extends View {
      * TODO: Need Improvements
      */
     private int getCalculateValuePercentageUseCaseThree(double min, double max, double value) {
-        double avalibe = Math.abs(min) + Math.abs(max);
+        double available = Math.abs(min) + Math.abs(max);
         if (value <= Math.min(min, max)) {
             return 100;
         } else if (value >= Math.max(min, max))
             return 0;
-        else if (value <= 0) {
+        else{
             double positive = Math.max(min, max);
-            double reult = ((positive - value) / (avalibe) * 100);
-            return (int) reult;
-        } else {
-            double negative = Math.abs(Math.min(min, max));
-            double reult = Math.abs((negative + value) / (avalibe) * 100);
-            return (int) reult;
+            double result = Math.abs((positive - value) / (available) * 100);
+            return (int) result;
         }
     }
 
@@ -260,19 +255,15 @@ abstract class AbstractGauge extends View {
      * TODO: Need Improvements
      */
     private int getCalculateValuePercentageUseCaseFoure(double min, double max, double value) {
-        double avalibe = Math.abs(min) + Math.abs(max);
+        double available = Math.abs(min) + Math.abs(max);
         if (value <= Math.min(min, max)) {
             return 0;
         } else if (value >= Math.max(min, max))
             return 100;
-        else if (value >= 0) {
-            double positive = Math.max(min, max);
-            double reult = ((positive + value) / (avalibe) * 100);
-            return (int) reult;
-        } else {
+        else{
             double negative = Math.abs(Math.min(min, max));
-            double reult = Math.abs((negative + value) / (avalibe) * 100);
-            return (int) reult;
+            double result = Math.abs((negative + value) / (available) * 100);
+            return (int) result;
         }
     }
 
