@@ -34,7 +34,7 @@ allprojects {
 Add the dependency to app build.gradle
 ``` gradle
 dependencies {
-	implementation 'com.github.Gruzer:simple-gauge-android:0.3.0'
+	implementation 'com.github.Gruzer:simple-gauge-android:0.3.1'
 }
 ```
 
