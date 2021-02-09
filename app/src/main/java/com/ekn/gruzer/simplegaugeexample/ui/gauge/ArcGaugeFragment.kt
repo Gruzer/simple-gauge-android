@@ -23,9 +23,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ekn.gruzer.gaugelibrary.Range
+import com.ekn.gruzer.gaugelibrary.contract.ValueFormatter
 
 import com.ekn.gruzer.simplegaugeexample.R
 import kotlinx.android.synthetic.main.fragment_arc_gauge.*
+import kotlinx.android.synthetic.main.gauge_halfgauge_fragment.*
 
 class ArcGaugeFragment : Fragment() {
 
@@ -68,6 +70,12 @@ class ArcGaugeFragment : Fragment() {
         arcGauge.addRange(range3)
         arcGauge.isUseRangeBGColor= true
         arcGauge.valueColor = Color.BLUE
+
+
+        arcGauge.setFormatter(ValueFormatter {
+            it.toInt().toString()
+        })
+
 
         arcgauge_update_btn.setOnClickListener {
             arcGauge.value = arcgauge_value_ed.text.toString().toDouble()

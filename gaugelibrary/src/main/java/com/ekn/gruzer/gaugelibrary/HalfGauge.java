@@ -118,7 +118,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.save();
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
-        canvas.drawText(getValue() + "", 200f, 240f, getTextPaint());
+        canvas.drawText(getFormattedValue() + "", 200f, 240f, getTextPaint());
         canvas.restore();
 
 
@@ -134,7 +134,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.save();
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
-        canvas.drawText(getValue() + "", 200f, 240f, getTextPaint());
+        canvas.drawText(getFormattedValue() + "", 200f, 240f, getTextPaint());
         canvas.restore();
     }
 
@@ -143,7 +143,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(26, 10f, 130f);
-        canvas.drawText(getMinValue() + "", 10f + getPadding(), 130f, getRangeValue(getMinValueTextColor()));
+        canvas.drawText(getFormattedValue(getMinValue()) + "", 10f + getPadding(), 130f, getRangeValue(getMinValueTextColor()));
         canvas.restore();
     }
 
@@ -152,7 +152,7 @@ public class HalfGauge extends AbstractGauge {
         canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), getHeight() / 2f - 50f * getScaleRatio());
         canvas.scale(getScaleRatio(), getScaleRatio());
         canvas.rotate(-26, 390f, 130f);
-        canvas.drawText(getMaxValue() + "", 390f - getPadding(), 130f, getRangeValue(getMaxValueTextColor()));
+        canvas.drawText(getFormattedValue(getMaxValue()) + "", 390f - getPadding(), 130f, getRangeValue(getMaxValueTextColor()));
         canvas.restore();
     }
 

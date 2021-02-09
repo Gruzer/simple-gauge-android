@@ -21,6 +21,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.ekn.gruzer.gaugelibrary.contract.ValueFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,7 @@ abstract class AbstractGauge extends View {
     private float padding = 0;
     private RectF rectF;
     private boolean useRangeBGColor = false;
+    private ValueFormatter formatter = new ValueFormatterImpl();
 
 
     public AbstractGauge(Context context) {
@@ -284,6 +287,7 @@ abstract class AbstractGauge extends View {
 
     /**
      * Get Current Value Color
+     *
      * @return {@link int}
      */
     public int getValueColor() {
@@ -321,9 +325,29 @@ abstract class AbstractGauge extends View {
         return value;
     }
 
+    protected String getFormattedValue(double value) {
+        String formatted = formatter.getFormattedValue(value);
+        if (formatted == null)
+            return new ValueFormatterImpl().getFormattedValue(value);
+        return formatted;
+    }
+
+    protected String getFormattedValue() {
+        return getFormattedValue(getValue());
+    }
+
+
     public void setValue(double value) {
         this.value = value;
         invalidate();
+    }
+
+    /**
+     * Set Value Formatter
+     * @param formatter {@link ValueFormatter}
+     */
+    public void setFormatter(ValueFormatter formatter) {
+        this.formatter = formatter;
     }
 
     public void setNeedleColor(int color) {

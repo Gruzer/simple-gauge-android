@@ -79,6 +79,7 @@ public class FullGauge extends AbstractGauge {
     }
 
     private void drawBaseArc(Canvas canvas) {
+
         drawBaseArc(canvas, getRectF(), startAngle, sweepAngle, getGaugeBackGround(getValue()));
 
     }
@@ -127,7 +128,7 @@ public class FullGauge extends AbstractGauge {
             canvas.save();
             canvas.translate((getWidth() / 2f) - ((getRectRight() / 2f) * getScaleRatio()), (getHeight() / 2f) - 220f * getScaleRatio());
             canvas.scale(getScaleRatio(), getScaleRatio());
-            canvas.drawText(getValue() + "", 200f, 240f, getTextPaint());
+            canvas.drawText(getFormattedValue() + "", 200f, 240f, getTextPaint());
             canvas.restore();
         }
     }
