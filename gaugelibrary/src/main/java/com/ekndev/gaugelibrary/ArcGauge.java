@@ -15,7 +15,7 @@
  *******************************************************************************/
 
 
-package com.ekn.gruzer.gaugelibrary;
+package com.ekndev.gaugelibrary;
 
 import android.content.Context;
 import android.graphics.Canvas;

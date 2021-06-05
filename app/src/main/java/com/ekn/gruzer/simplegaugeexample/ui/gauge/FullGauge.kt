@@ -24,11 +24,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ekn.gruzer.gaugelibrary.Range
+import com.ekndev.gaugelibrary.Range
 
 import com.ekn.gruzer.simplegaugeexample.R
 import kotlinx.android.synthetic.main.fragment_full_gauge.*
-import kotlinx.android.synthetic.main.fragment_multi_gauge.*
 
 
 class FullGauge : Fragment() {

@@ -9,7 +9,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.ekn.gruzer.gaugelibrary.ArcGauge
+    <com.ekndev.gaugelibrary.ArcGauge
         android:id="@+id/arcGauge"
         android:layout_width="393dp"
         android:layout_height="233dp"

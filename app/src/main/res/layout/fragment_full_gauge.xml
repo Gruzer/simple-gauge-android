@@ -8,7 +8,7 @@
     tools:context=".ui.gauge.FullGauge">
 
 
-    <com.ekn.gruzer.gaugelibrary.FullGauge
+    <com.ekndev.gaugelibrary.FullGauge
         android:id="@+id/fullGauge"
         android:layout_width="368dp"
         android:layout_height="269dp"

@@ -15,7 +15,7 @@
  *******************************************************************************/
 
 
-package com.ekn.gruzer.gaugelibrary;
+package com.ekndev.gaugelibrary;
 
 public class Range {
 

@@ -1,6 +1,6 @@
-package com.ekn.gruzer.gaugelibrary;
+package com.ekndev.gaugelibrary;
 
-import com.ekn.gruzer.gaugelibrary.contract.ValueFormatter;
+import com.ekndev.gaugelibrary.contract.ValueFormatter;
 
 public class ValueFormatterImpl implements ValueFormatter {
     @Override

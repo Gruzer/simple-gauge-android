@@ -1,4 +1,4 @@
-package com.ekn.gruzer.gaugelibrary.contract;
+package com.ekndev.gaugelibrary.contract;
 
 public interface ValueFormatter {
     String getFormattedValue(double value);

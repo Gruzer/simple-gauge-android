@@ -11,17 +11,16 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.ekn.gruzer.gaugelibrary;
+package com.ekndev.gaugelibrary;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
-import com.ekn.gruzer.gaugelibrary.contract.ValueFormatter;
+import com.ekndev.gaugelibrary.contract.ValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;

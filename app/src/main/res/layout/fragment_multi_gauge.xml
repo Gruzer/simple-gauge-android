@@ -9,7 +9,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.ekn.gruzer.gaugelibrary.MultiGauge
+    <com.ekndev.gaugelibrary.MultiGauge
         android:id="@+id/multiGauge"
         android:layout_width="358dp"
         android:layout_height="264dp"
