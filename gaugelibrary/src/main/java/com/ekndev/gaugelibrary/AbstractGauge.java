@@ -25,7 +25,7 @@ import com.ekndev.gaugelibrary.contract.ValueFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class AbstractGauge extends View {
+public abstract class AbstractGauge extends View {
 
 
     private List<Range> ranges = new ArrayList<>();
